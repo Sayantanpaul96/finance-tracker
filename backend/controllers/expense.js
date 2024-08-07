@@ -52,14 +52,14 @@ exports.getExpense = async (req, res) => {
 exports.deleteExpense = async (req, res) => {
   const { id } = req.params;
   ExpenseSchema.findByIdAndDelete(id)
-  .then((expense) => {
-    res.status(200).json({
-      message: `Success: Expense Deleted Successfully`,
-    });
-  })
-  .catch(err => {
-    res.status(500).json({
+    .then((expense) => {
+      res.status(200).json({
+        message: `Success: Expense Deleted Successfully`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
         message: `Server Error: Error Occured while Deleting Expense: ${err}`,
       });
-  });
+    });
 };
