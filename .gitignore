@@ -1,0 +1,7 @@
+# Node.js
+node_modules/
+package-lock.json
+# Custom
+# db credentials
+Important.txt
+.env
