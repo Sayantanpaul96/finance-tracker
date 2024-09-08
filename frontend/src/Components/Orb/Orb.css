@@ -6,8 +6,7 @@
     margin-left: -37vh;
     margin-right: -37vh;
     background: linear-gradient(180deg, #F56692 0%, #F2994A 100%);
-    /* change to 400 if later required */
-    filter: blur(400px);
+    filter: blur(200px);
     animation: orb-move 15s alternate linear infinite;
 }
 
@@ -16,6 +15,8 @@
         transform: translate(0,0);
     }
     50% {
+        --width-ratio: calc(100vw /2);
+        --height-ratio: calc(100vh / 2);
         transform: translate(var(--width-ratio), var(--height-ratio));
     }
     100% {

@@ -9,6 +9,18 @@
     height: 100%;
     display: flex;
     gap: 2em;
+    main {
+        flex: 1;
+        background: rgba(252, 246, 249, .78);
+        border: 3px solid #ffffff;
+        backdrop-filter: blur(4.5px);
+        border-radius: 32px;
+        overflow: auto;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+    }
 }
 
 .inner-layout {
