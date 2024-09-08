@@ -1,4 +1,3 @@
-import React from 'react';
 import './Navigation.css';
 import { menuItems } from '../../utils/menuItems';
 import { signout } from '../../utils/icons';
