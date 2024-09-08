@@ -1,0 +1,17 @@
+.app {
+    height: 100vh;
+    background-image: url('../img/background.jpg'); 
+    position: relative;
+}
+
+.main-layout {
+    padding: 2em;
+    height: 100%;
+    display: flex;
+    gap: 2em;
+}
+
+.inner-layout {
+    padding: 2em 1.5em;
+    width: 100%;
+}
