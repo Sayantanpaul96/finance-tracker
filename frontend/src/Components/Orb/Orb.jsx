@@ -6,15 +6,14 @@ const Orb = () => {
   const { width, height } = useWindowSize();
 
   useEffect(() => {
-    document.documentElement.style.setProperty(
-      "--width-ratio",
-      `${width / 1.2}px`
-    );
-    document.documentElement.style.setProperty(
-      "--height-ratio",
-      `${height / 2}px`
-    );
+    const root = document.documentElement;
+    const widthRatio = width / 2;
+    const heightRatio = height / 2;
+
+    root.style.setProperty("--width-ratio", `${widthRatio}px`);
+    root.style.setProperty("--height-ratio", `${heightRatio}px`);
   }, [height, width]);
+
   return <div className="orb-style"></div>;
 };
 
