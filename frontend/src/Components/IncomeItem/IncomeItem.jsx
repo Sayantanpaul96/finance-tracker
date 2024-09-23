@@ -21,6 +21,7 @@ import {
 import { Button } from "../Button/button";
 import "./IncomeItem.css";
 import { PropTypes } from "prop-types";
+import { formatDate } from "../../utils/dateFormat";
 
 export const IncomeItem = ({
   id,
@@ -77,9 +78,6 @@ export const IncomeItem = ({
     }
   };
 
-  const formatDate = () => {
-  }
-
   return (
     <div
       className="income-item"
@@ -96,7 +94,7 @@ export const IncomeItem = ({
               {dollar()} {amount}
             </p>
             <p>
-              {calendar()} {date}
+              {calendar()} {formatDate(date)}
             </p>
             <p>
               {comment()} {description}

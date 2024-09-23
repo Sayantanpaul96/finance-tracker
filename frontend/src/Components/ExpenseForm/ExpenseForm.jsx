@@ -1,4 +1,4 @@
-import './Form.css'
+import './ExpenseForm.css'
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useGlobalContext } from "../../context/globalContext";
@@ -6,8 +6,8 @@ import "react-datepicker/dist/react-datepicker.css"
 import { Button } from './../Button/button';
 import { plus } from '../../utils/icons';
 
-export const Form = ({ onFormSubmit }) => {
-  const { addIncome, getIncomes } = useGlobalContext();
+export const ExpenseForm = ({ onFormSubmit }) => {
+  const { addExpense } = useGlobalContext();
 
   const defaultInputs = {
     title: "",
@@ -27,7 +27,7 @@ export const Form = ({ onFormSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addIncome(inputState).then(() => {
+    addExpense(inputState).then(() => {
       // clear inputs.
       setInputState(defaultInputs);
       if (onFormSubmit) {
@@ -44,7 +44,7 @@ export const Form = ({ onFormSubmit }) => {
           value={title}
           name={"title"}
           id="title"
-          placeholder="Salary Title"
+          placeholder="Expense Title"
           onChange={inputHandler("title")}
         />
       </div>
@@ -54,7 +54,7 @@ export const Form = ({ onFormSubmit }) => {
           value={amount}
           name={"amount"}
           id="amount"
-          placeholder="Salary Amount"
+          placeholder="Expense Amount"
           onChange={inputHandler("amount")}
         />
       </div>
@@ -82,11 +82,13 @@ export const Form = ({ onFormSubmit }) => {
             {" "}
             Select Option
           </option>
-          <option value="salary">Salary</option>
-          <option value="freelancing">Freelancing</option>
-          <option value="investments">Investments</option>
-          <option value="stocks">Stocks</option>
-          <option value="bank">Bank Options</option>
+          <option value="education">Education</option>
+          <option value="groceries">Groceries</option>
+          <option value="health">Health</option>
+          <option value="subscriptions">Subscriptions</option>
+          <option value="takeaways">Takeaways</option>
+          <option value="clothing">Clothing</option>
+          <option value="travelling">Travelling</option>
           <option value="other">Other</option>
         </select>
       </div>
@@ -104,7 +106,7 @@ export const Form = ({ onFormSubmit }) => {
       </div>
       <div className="submit-btn">
         <Button 
-          name={'Add Income'}
+          name={'Add Expense'}
           icon={plus()}
           bPad={'.8rem 1.6rem'}
           bRad={'30px'}
@@ -116,4 +118,4 @@ export const Form = ({ onFormSubmit }) => {
   );
 };
 
-export default Form;
+export default ExpenseForm;
