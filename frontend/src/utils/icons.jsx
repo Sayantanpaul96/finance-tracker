@@ -14,7 +14,7 @@ import {
   faArrowTrendUp,
   faPiggyBank,
   faMoneyCheckDollar,
-  faDesktop, // check
+  faDesktop,
   faUsersBetweenLines,
   faIndianRupeeSign,
   faCalendar,
@@ -29,6 +29,7 @@ import {
   faBriefcaseMedical,
   faTv,
   faCircleDot,
+  faCircleExclamation,
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -37,6 +38,7 @@ export const transaction = () => <FontAwesomeIcon icon={faCreditCard} />;
 export const categories = () => <FontAwesomeIcon icon={faTags} />;
 export const accounts = () => <FontAwesomeIcon icon={faWallet} />;
 export const settings = () => <FontAwesomeIcon icon={faGear} />;
+export const error = () => <FontAwesomeIcon icon={faCircleExclamation} />
 
 export const logout = () => (
   <FontAwesomeIcon icon={faPersonWalkingArrowRight} />

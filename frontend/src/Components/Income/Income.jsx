@@ -1,26 +1,69 @@
-import { useGlobalContext } from '../../context/globalContext';
-import Form from '../Form/Form';
-import './Income.css';
+import { useEffect, useState } from "react";
+import { useGlobalContext } from "../../context/globalContext";
+import Form from "../Form/Form";
+import "./Income.css";
+import { dollar } from "../../utils/icons.jsx";
+import IncomeItem from "../IncomeItem/IncomeItem.jsx";
 
 export const Income = () => {
+  const { addIncome, getIncomes, incomes, deleteIncome, totalIncome } = useGlobalContext();
+  const  [refetch, setRefetch] = useState(false);
 
-    const { addIncome }  = useGlobalContext();
+  useEffect(() => {
+    getIncomes();
+  }, [refetch]);
 
-    return (
-        <div className='Income'>
-            <div className="inner-layout">
-                <h1>Incomes</h1>
-                <div className="income-content">
-                    <div className="form-container">
-                        <Form />
-                    </div>
-                    <div className="incomes">
+  const handleRefetch = () => {
+    setRefetch((prevRefetch) => !prevRefetch)
+  };
 
-                    </div>
-                </div>
-            </div>
+  const handleDeleteIncome = (id) => {
+    deleteIncome(id).then(() => {
+      handleRefetch();
+    }).catch(err => console.log("Error in Deleting values", err));
+  };
+
+  return (
+    <div className="income">
+      <div className="inner-layout">
+        <h1>Incomes</h1>
+        <h2 className="total-income">Total Income: <span>{dollar()} {totalIncome()}</span></h2>
+        <div className="income-content">
+          <div className="form-container">
+            <Form onFormSubmit={handleRefetch}/>
+          </div>
+          <div className="incomes">
+            {incomes.map((income) => {
+              const {
+                _id,
+                title,
+                amount,
+                type,
+                date,
+                category,
+                description,
+              } = income;
+
+              return (
+                <IncomeItem
+                  key={_id}
+                  id={_id}
+                  title={title}
+                  amount={amount}
+                  type={type}
+                  description={description}
+                  date={date}
+                  category={category}
+                  indicatorColor={'var(--color-green)'}
+                  deleteItem={handleDeleteIncome}
+                />
+              );
+            })}
+          </div>
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
 
 export default Income;

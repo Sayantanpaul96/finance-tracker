@@ -3,17 +3,21 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useGlobalContext } from "../../context/globalContext";
 import "react-datepicker/dist/react-datepicker.css"
+import { Button } from './../Button/button';
+import { plus } from '../../utils/icons';
 
-export const Form = () => {
-  const { addIncome } = useGlobalContext();
+export const Form = ({ onFormSubmit }) => {
+  const { addIncome, getIncomes } = useGlobalContext();
 
-  const [inputState, setInputState] = useState({
+  const defaultInputs = {
     title: "",
     amount: "",
     date: "",
     category: "",
     description: "",
-  });
+  }
+
+  const [inputState, setInputState] = useState(defaultInputs);
 
   const inputHandler = (name) => (e) => {
     setInputState({ ...inputState, [name]: e.target.value });
@@ -23,7 +27,13 @@ export const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addIncome(inputState);
+    addIncome(inputState).then(() => {
+      // clear inputs.
+      setInputState(defaultInputs);
+      if (onFormSubmit) {
+        onFormSubmit();
+      }
+    }).catch(() => console.error(`Error Adding Incomes`));
   };
 
   return (
@@ -49,6 +59,18 @@ export const Form = () => {
         />
       </div>
       <div className="input-control">
+        <DatePicker
+          id="date"
+          className='date-box'
+          placeholderText="Enter A Date"
+          selected={date}
+          dateFormat="dd/MM/yyyy"
+          onChange={(date) => {
+            setInputState({ ...inputState, date: date });
+          }}
+        />
+      </div>
+      <div className="input-control">
         <textarea
           type="text"
           value={description}
@@ -58,17 +80,6 @@ export const Form = () => {
           cols="30"
           rows="4"
           onChange={inputHandler("description")}
-        />
-      </div>
-      <div className="input-control">
-        <DatePicker
-          id="date"
-          placeholderText="Enter A Date"
-          selected={date}
-          dateFormat="dd/MM/yyyy"
-          onChange={(date) => {
-            setInputState({ ...inputState, date: date });
-          }}
         />
       </div>
       <div className="selects input-control">
@@ -92,7 +103,14 @@ export const Form = () => {
         </select>
       </div>
       <div className="submit-btn">
-        <button>Add Income</button>
+        <Button 
+          name={'Add Income'}
+          icon={plus()}
+          bPad={'.8rem 1.6rem'}
+          bRad={'30px'}
+          bg={'var(--color-accent)'}
+          color={'#fff'}
+        />
       </div>
     </form>
   );
