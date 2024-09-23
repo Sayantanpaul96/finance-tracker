@@ -9,59 +9,96 @@ const BASE_URL = "http://localhost:5000/api/v1";
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
+  const [incomes, setIncomes] = useState([]);
+  const [expenses, setExpenses] = useState([]);
+  const [error, setError] = useState(null);
 
-    const [incomes, setIncomes] = useState([]);
-    const [expenses, setExpenses] = useState([]);
-    const [error, setError] = useState(null);
+  // all incomes functions
+  const addIncome = async (income) => {
+    const response = await axios
+      .post(`${BASE_URL}/add-income`, income)
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  };
 
-    const addIncome = async (income) => {
-        const response = await axios.post(`${BASE_URL}/add-income`, income)
-            .catch(err => {
-                setError(err.response.data.message);
-            })
-    }
+  const getIncomes = async () => {
+    const response = await axios.get(`${BASE_URL}/get-income`, {
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    });
+    setIncomes(response.data);
+  };
 
-    const getIncomes = async () => {
-        const response = await axios.get(`${BASE_URL}/get-income`, {
-            headers: {
-                'Cache-Control': 'no-cache',
-            }
-        })
-        setIncomes(response.data);
-    }
+  const deleteIncome = async (id) => {
+    const res = await axios.delete(`${BASE_URL}/delete-income/${id}`);
+  };
 
-    const deleteIncome = async (id) => {
-        const res = await axios.delete(`${BASE_URL}/delete-income/${id}`);
-    }
+  const totalIncome = () => {
+    let totalIncome = 0;
+    incomes.map((income) => {
+      totalIncome += income.amount;
+    });
 
-    const totalIncome = () => {
-        let totalIncome = 0;
-        incomes.map((income) => {
-            totalIncome += income.amount;
-        });
+    return totalIncome;
+  };
 
-        return totalIncome;
-    }
+  // all expenses functions
+  const addExpense = async (expense) => {
+    await axios
+      .post(`${BASE_URL}/add-expense`, expense)
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  };
 
-    return (
-        <GlobalContext.Provider value={{
-            addIncome, 
-            getIncomes,
-            deleteIncome,
-            totalIncome,
-            incomes,
-        }}>
-            {children}
-        </GlobalContext.Provider>
-    )
+  const getExpenses = async () => {
+    const response = await axios.get(`${BASE_URL}/get-expense`, {
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    });
+    setExpenses(response.data);
+  };
+
+  const deleteExpenses = async (id) => {
+    const res = await axios.delete(`${BASE_URL}/delete-expense/${id}`);
+  };
+
+  const totalExpenses = () => {
+    let totalExpense = 0;
+    expenses.map((expense) => {
+      totalExpense += expense.amount;
+    });
+
+    return totalExpense;
+  };
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        addIncome,
+        getIncomes,
+        deleteIncome,
+        totalIncome,
+        incomes,
+        getExpenses,
+        addExpense,
+        deleteExpenses,
+        totalExpenses,
+        expenses
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
 };
 
 GlobalProvider.propTypes = {
-    children: PropTypes.any,
+  children: PropTypes.any,
 };
 
 export const useGlobalContext = () => {
-    return useContext(GlobalContext)
-}
-
-  
+  return useContext(GlobalContext);
+};
