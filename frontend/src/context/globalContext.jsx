@@ -10,20 +10,46 @@ const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
 
-    const [incomes, setIncome] = useState([]);
+    const [incomes, setIncomes] = useState([]);
     const [expenses, setExpenses] = useState([]);
     const [error, setError] = useState(null);
 
     const addIncome = async (income) => {
-        console.log(income)
         const response = await axios.post(`${BASE_URL}/add-income`, income)
             .catch(err => {
                 setError(err.response.data.message);
             })
     }
+
+    const getIncomes = async () => {
+        const response = await axios.get(`${BASE_URL}/get-income`, {
+            headers: {
+                'Cache-Control': 'no-cache',
+            }
+        })
+        setIncomes(response.data);
+    }
+
+    const deleteIncome = async (id) => {
+        const res = await axios.delete(`${BASE_URL}/delete-income/${id}`);
+    }
+
+    const totalIncome = () => {
+        let totalIncome = 0;
+        incomes.map((income) => {
+            totalIncome += income.amount;
+        });
+
+        return totalIncome;
+    }
+
     return (
         <GlobalContext.Provider value={{
-            addIncome,  
+            addIncome, 
+            getIncomes,
+            deleteIncome,
+            totalIncome,
+            incomes,
         }}>
             {children}
         </GlobalContext.Provider>
@@ -37,4 +63,5 @@ GlobalProvider.propTypes = {
 export const useGlobalContext = () => {
     return useContext(GlobalContext)
 }
+
   

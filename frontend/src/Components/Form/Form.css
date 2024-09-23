@@ -22,6 +22,16 @@
         input{
             width: 100%;
         }
+        .react-datepicker-wrapper {
+            display: block;
+          }
+          
+          .react-datepicker__input-container {
+            width: 100%;
+          }
+        .date-box {
+            width: 100%;
+        }
     }
 
     .selects{
@@ -37,7 +47,7 @@
 
     .submit-btn{
         button {
-            box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+            box-shadow: 0px 1px 15px rgb(255, 255, 255);
             &:hover{
                 background: var(--color-green) !important;
             }
