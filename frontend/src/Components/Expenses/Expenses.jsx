@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../../context/globalContext";
 import { ExpenseForm } from "../ExpenseForm/ExpenseForm.jsx"
@@ -6,7 +7,7 @@ import { dollar } from "../../utils/icons.jsx";
 import IncomeItem from "../IncomeItem/IncomeItem.jsx";
 
 export const Expenses = () => {
-  const { addIncome, getExpenses, expenses, deleteExpenses, totalExpenses } = useGlobalContext();
+  const { getExpenses, expenses, deleteExpenses, totalExpenses } = useGlobalContext();
   const  [refetchExpense, setRefetchExpense] = useState(false);
 
   useEffect(() => {

@@ -34,7 +34,8 @@ export const Chart = () => {
   useEffect(() => {
     getExpenses();
     getIncomes();
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const data = {
 

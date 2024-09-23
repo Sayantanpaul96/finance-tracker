@@ -29,9 +29,9 @@ export const Navigation = ({ active, setActive }) => {
           );
         })}
       </ul>
-      {/* <div className="bottom-nav">
+      <div className="bottom-nav">
         <li>{signout()} Sign Out</li>
-      </div> */}
+      </div>
     </nav>
   );
 };

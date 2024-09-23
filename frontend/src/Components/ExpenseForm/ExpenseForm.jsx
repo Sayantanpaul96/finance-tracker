@@ -1,5 +1,6 @@
 import './ExpenseForm.css'
 import { useState } from "react";
+import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import { useGlobalContext } from "../../context/globalContext";
 import "react-datepicker/dist/react-datepicker.css"
@@ -119,5 +120,10 @@ export const ExpenseForm = ({ onFormSubmit }) => {
     </form>
   );
 };
+
+ExpenseForm.propTypes = {
+  onFormSubmit: PropTypes.func,
+};
+
 
 export default ExpenseForm;

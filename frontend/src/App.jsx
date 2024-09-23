@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import DashBoard from "./Components/Dashboard/Dashboard";
 import Income from "./Components/Income/Income";
 import Expenses from "./Components/Expenses/Expenses";
+import Transactions  from "./Components/Transactions/Transactions";
 import { useGlobalContext } from "./context/globalContext";
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
     switch (active) {
       case 1:
         return <DashBoard />;
+      case 2:
+        return <Transactions />;
       case 3:
         return <Income />;
       case 4:

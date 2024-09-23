@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext } from "react";
 import axios from "axios";
 import { useState } from "react";
@@ -15,7 +16,7 @@ export const GlobalProvider = ({ children }) => {
 
   // all incomes functions
   const addIncome = async (income) => {
-    const response = await axios
+    await axios
       .post(`${BASE_URL}/add-income`, income)
       .catch((err) => {
         console.log("Error", err)
@@ -35,7 +36,7 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const deleteIncome = async (id) => {
-    const res = await axios.delete(`${BASE_URL}/delete-income/${id}`).catch((err) => {
+   await axios.delete(`${BASE_URL}/delete-income/${id}`).catch((err) => {
       setError(err.response.data.message);
     });
   };
@@ -70,7 +71,7 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const deleteExpenses = async (id) => {
-    const res = await axios.delete(`${BASE_URL}/delete-expense/${id}`).catch((err) => {
+    await axios.delete(`${BASE_URL}/delete-expense/${id}`).catch((err) => {
       setError(err.response.data.message);
     });
   };
@@ -90,7 +91,7 @@ export const GlobalProvider = ({ children }) => {
 
   const transactionHistory = () => {
     const history = [...incomes, ...expenses];
-    return history.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 6);
+    return history.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
   }
 
   return (

@@ -1,5 +1,6 @@
 import './Form.css'
 import { useState } from "react";
+import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import { useGlobalContext } from "../../context/globalContext";
 import "react-datepicker/dist/react-datepicker.css"
@@ -7,7 +8,7 @@ import { Button } from './../Button/button';
 import { plus } from '../../utils/icons';
 
 export const Form = ({ onFormSubmit }) => {
-  const { addIncome, getIncomes, error, setError } = useGlobalContext();
+  const { addIncome, error, setError } = useGlobalContext();
 
   const defaultInputs = {
     title: "",
@@ -117,5 +118,10 @@ export const Form = ({ onFormSubmit }) => {
     </form>
   );
 };
+
+Form.propTypes = {
+  onFormSubmit: PropTypes.func,
+};
+
 
 export default Form;

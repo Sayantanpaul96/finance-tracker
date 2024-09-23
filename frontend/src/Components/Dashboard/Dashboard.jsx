@@ -46,7 +46,7 @@ export const DashBoard = () => {
             </h2>
             <div className="salary-item">
               <p>
-                {Math.min(...incomes.map((item) => item.amount)) >= 0
+                {Math.min(...incomes.map((item) => item.amount)) <= 0
                   ? "0"
                   : Math.min(...incomes.map((item) => item.amount))}
               </p>
@@ -61,7 +61,7 @@ export const DashBoard = () => {
             </h2>
             <div className="salary-item">
               <p>
-                {Math.min(...expenses.map((item) => item.amount)) >= 0
+                {Math.min(...expenses.map((item) => item.amount)) <= 0
                   ? "0"
                   : Math.min(...expenses.map((item) => item.amount))}
               </p>
