@@ -100,7 +100,7 @@ export const IncomeItem = ({
               {comment()} {description}
             </p>
           </div>
-          <div className="btn-con">
+          {deleteItem && <div className="btn-con">
             <Button
               icon={trash()}
               bPad={"1rem"}
@@ -111,7 +111,7 @@ export const IncomeItem = ({
               hColor={"var(--color-green)"}
               onClick={() => deleteItem(id)}
             />
-          </div>
+          </div>}
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import './ExpenseForm.css'
 import { useState } from "react";
+import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import { useGlobalContext } from "../../context/globalContext";
 import "react-datepicker/dist/react-datepicker.css"
@@ -7,7 +8,7 @@ import { Button } from './../Button/button';
 import { plus } from '../../utils/icons';
 
 export const ExpenseForm = ({ onFormSubmit }) => {
-  const { addExpense } = useGlobalContext();
+  const { addExpense, error, setError } = useGlobalContext();
 
   const defaultInputs = {
     title: "",
@@ -21,6 +22,7 @@ export const ExpenseForm = ({ onFormSubmit }) => {
 
   const inputHandler = (name) => (e) => {
     setInputState({ ...inputState, [name]: e.target.value });
+    setError('')
   };
 
   const { title, amount, category, description, date } = inputState;
@@ -38,6 +40,7 @@ export const ExpenseForm = ({ onFormSubmit }) => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
+      {error && <p className='error'>{error}</p>}
       <div className="input-control">
         <input
           type="text"
@@ -117,5 +120,10 @@ export const ExpenseForm = ({ onFormSubmit }) => {
     </form>
   );
 };
+
+ExpenseForm.propTypes = {
+  onFormSubmit: PropTypes.func,
+};
+
 
 export default ExpenseForm;
