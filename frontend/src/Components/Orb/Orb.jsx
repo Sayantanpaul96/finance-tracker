@@ -7,8 +7,8 @@ const Orb = () => {
 
   useEffect(() => {
     const root = document.documentElement;
-    const widthRatio = width / 2;
-    const heightRatio = height / 2;
+    const widthRatio = width;
+    const heightRatio = height;
 
     root.style.setProperty("--width-ratio", `${widthRatio}px`);
     root.style.setProperty("--height-ratio", `${heightRatio}px`);

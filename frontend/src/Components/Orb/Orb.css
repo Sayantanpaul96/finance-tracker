@@ -1,13 +1,13 @@
 .orb-style {
-    width: 100vw;
-    height: 100vh;
+    width: 70vh;
+    height: 70vh;
     position: absolute;
     border-radius: 50%;
     margin-left: -37vh;
     margin-right: -37vh;
     background: linear-gradient(180deg, #F56692 0%, #F2994A 100%);
     filter: blur(200px);
-    animation: orb-move 15s alternate linear infinite;
+    animation: orb-move 30s alternate linear infinite;
 }
 
 @keyframes orb-move {
@@ -15,8 +15,8 @@
         transform: translate(0,0);
     }
     50% {
-        --width-ratio: calc(100vw /2);
-        --height-ratio: calc(100vh / 2);
+        --width-ratio: calc(100vw);
+        --height-ratio: calc(100vh);
         transform: translate(var(--width-ratio), var(--height-ratio));
     }
     100% {
