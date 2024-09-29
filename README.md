@@ -1,6 +1,7 @@
 # 💰 Finance Tracker Application
 
 Welcome to my Finance Tracker application! This project allows users to monitor their financial transactions and view detailed summaries of their spending. It is built using ReactJS and styled with modern UI components for a sleek, user-friendly experience.
+Build Using ReactJS, Node, Express, Vite, MongoDB
 
 ## 📋 Table of Contents
 - [Overview](#overview)
